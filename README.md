@@ -1,8 +1,6 @@
 # go-json
 
-![Go](https://github.com/goccy/go-json/workflows/Go/badge.svg)
-[![GoDoc](https://godoc.org/github.com/goccy/go-json?status.svg)](https://pkg.go.dev/github.com/goccy/go-json?tab=doc)
-[![codecov](https://codecov.io/gh/goccy/go-json/branch/master/graph/badge.svg)](https://codecov.io/gh/goccy/go-json)
+![Go](https://github.com/night-codes/go-json/workflows/Go/badge.svg) [![GoDoc](https://godoc.org/github.com/night-codes/go-json?status.svg)](https://pkg.go.dev/github.com/night-codes/go-json?tab=doc) [![codecov](https://codecov.io/gh/night-codes/go-json/branch/master/graph/badge.svg)](https://codecov.io/gh/night-codes/go-json)
 
 Fast JSON encoder/decoder compatible with encoding/json for Go
 
@@ -21,61 +19,57 @@ Fast JSON encoder/decoder compatible with encoding/json for Go
 * v1.0.0
 ```
 
-We are accepting requests for features that will be implemented between v0.9.0 and v.1.0.0.
-If you have the API you need, please submit your issue [here](https://github.com/goccy/go-json/issues).
+We are accepting requests for features that will be implemented between v0.9.0 and v.1.0.0. If you have the API you need, please submit your issue [here](https://github.com/night-codes/go-json/issues).
 
 # Features
 
-- Drop-in replacement of `encoding/json`
-- Fast ( See [Benchmark section](https://github.com/goccy/go-json#benchmarks) )
-- Flexible customization with options
-- Coloring the encoded string
-- Can propagate context.Context to `MarshalJSON` or `UnmarshalJSON`
-- Can dynamically filter the fields of the structure type-safely
+-   Drop-in replacement of `encoding/json`
+-   Fast ( See [Benchmark section](https://github.com/night-codes/go-json#benchmarks) )
+-   Flexible customization with options
+-   Coloring the encoded string
+-   Can propagate context.Context to `MarshalJSON` or `UnmarshalJSON`
+-   Can dynamically filter the fields of the structure type-safely
 
 # Installation
 
 ```
-go get github.com/goccy/go-json
+go get github.com/night-codes/go-json
 ```
 
 # How to use
 
-Replace import statement from `encoding/json` to `github.com/goccy/go-json`
+Replace import statement from `encoding/json` to `github.com/night-codes/go-json`
 
 ```
 -import "encoding/json"
-+import "github.com/goccy/go-json"
++import "github.com/night-codes/go-json"
 ```
 
 # JSON library comparison
 
-|  name  |  encoder | decoder | compatible with `encoding/json` |
-| :----: | :------: | :-----: | :-----------------------------: |
-| encoding/json |  yes | yes | N/A |
-| [json-iterator/go](https://github.com/json-iterator/go) | yes | yes | partial |
-| [easyjson](https://github.com/mailru/easyjson) | yes | yes |  no |
-| [gojay](https://github.com/francoispqt/gojay) | yes | yes |  no |
-| [segmentio/encoding/json](https://github.com/segmentio/encoding/tree/master/json) | yes | yes | partial |
-| [jettison](https://github.com/wI2L/jettison) | yes | no | no |
-| [simdjson-go](https://github.com/minio/simdjson-go) | no | yes | no |
-| goccy/go-json | yes | yes | yes |
+|                                       name                                        | encoder | decoder | compatible with `encoding/json` |
+| :-------------------------------------------------------------------------------: | :-----: | :-----: | :-----------------------------: |
+|                                   encoding/json                                   |   yes   |   yes   |               N/A               |
+|              [json-iterator/go](https://github.com/json-iterator/go)              |   yes   |   yes   |             partial             |
+|                  [easyjson](https://github.com/mailru/easyjson)                   |   yes   |   yes   |               no                |
+|                   [gojay](https://github.com/francoispqt/gojay)                   |   yes   |   yes   |               no                |
+| [segmentio/encoding/json](https://github.com/segmentio/encoding/tree/master/json) |   yes   |   yes   |             partial             |
+|                   [jettison](https://github.com/wI2L/jettison)                    |   yes   |   no    |               no                |
+|                [simdjson-go](https://github.com/minio/simdjson-go)                |   no    |   yes   |               no                |
+|                                night-codes/go-json                                |   yes   |   yes   |               yes               |
 
-- `json-iterator/go` isn't compatible with `encoding/json` in many ways (e.g. https://github.com/json-iterator/go/issues/229 ), but it hasn't been supported for a long time.
-- `segmentio/encoding/json` is well supported for encoders, but some are not supported for decoder APIs such as `Token` ( streaming decode )
+-   `json-iterator/go` isn't compatible with `encoding/json` in many ways (e.g. https://github.com/json-iterator/go/issues/229 ), but it hasn't been supported for a long time.
+-   `segmentio/encoding/json` is well supported for encoders, but some are not supported for decoder APIs such as `Token` ( streaming decode )
 
 ## Other libraries
 
-- [jingo](https://github.com/bet365/jingo)
+-   [jingo](https://github.com/bet365/jingo)
 
-I tried the benchmark but it didn't work.
-Also, it seems to panic when it receives an unexpected value because there is no error handling...
+I tried the benchmark but it didn't work. Also, it seems to panic when it receives an unexpected value because there is no error handling...
 
-- [ffjson](https://github.com/pquerna/ffjson)
+-   [ffjson](https://github.com/pquerna/ffjson)
 
-Benchmarking gave very slow results.
-It seems that it is assumed that the user will use the buffer pool properly.
-Also, development seems to have already stopped
+Benchmarking gave very slow results. It seems that it is assumed that the user will use the buffer pool properly. Also, development seems to have already stopped
 
 # Benchmarks
 
@@ -86,8 +80,7 @@ $ go test -bench .
 
 ## Encode
 
-<img width="700px" src="https://user-images.githubusercontent.com/209884/107126758-0845cb00-68f5-11eb-8db7-086fcf9bcfaa.png"></img>
-<img width="700px" src="https://user-images.githubusercontent.com/209884/107126757-07ad3480-68f5-11eb-87aa-858cc5eacfcb.png"></img>
+<img width="700px" src="https://user-images.githubusercontent.com/209884/107126758-0845cb00-68f5-11eb-8db7-086fcf9bcfaa.png"></img> <img width="700px" src="https://user-images.githubusercontent.com/209884/107126757-07ad3480-68f5-11eb-87aa-858cc5eacfcb.png"></img>
 
 ## Decode
 
@@ -95,16 +88,13 @@ $ go test -bench .
 <img width="700" alt="" src="https://user-images.githubusercontent.com/209884/107979931-b989e680-7002-11eb-87a0-66fc22d90dd4.png">
 <img width="700" alt="" src="https://user-images.githubusercontent.com/209884/107979940-bc84d700-7002-11eb-9647-869bbc25c9d9.png">
 
-
 # Fuzzing
 
-[go-json-fuzz](https://github.com/goccy/go-json-fuzz) is the repository for fuzzing tests.
-If you run the test in this repository and find a bug, please commit to corpus to go-json-fuzz and report the issue to [go-json](https://github.com/goccy/go-json/issues).
+[go-json-fuzz](https://github.com/night-codes/go-json-fuzz) is the repository for fuzzing tests. If you run the test in this repository and find a bug, please commit to corpus to go-json-fuzz and report the issue to [go-json](https://github.com/night-codes/go-json/issues).
 
 # How it works
 
-`go-json` is very fast in both encoding and decoding compared to other libraries.
-It's easier to implement by using automatic code generation for performance or by using a dedicated interface, but `go-json` dares to stick to compatibility with `encoding/json` and is the simple interface. Despite this, we are developing with the aim of being the fastest library.
+`go-json` is very fast in both encoding and decoding compared to other libraries. It's easier to implement by using automatic code generation for performance or by using a dedicated interface, but `go-json` dares to stick to compatibility with `encoding/json` and is the simple interface. Despite this, we are developing with the aim of being the fastest library.
 
 Here, we explain the various speed-up techniques implemented by `go-json`.
 
@@ -147,8 +137,7 @@ bufPool.Put(buf)
 
 As you know, the reflection operation is very slow.
 
-Therefore, using the fact that the address position where the type information is stored is fixed for each binary ( we call this `typeptr` ),
-we can use the address in the type information to call a pre-built optimized process.
+Therefore, using the fact that the address position where the type information is stored is fixed for each binary ( we call this `typeptr` ), we can use the address in the type information to call a pre-built optimized process.
 
 For example, you can get the address to the type information from `interface{}` as follows and you can use that information to call a process that does not have reflection.
 
@@ -181,23 +170,19 @@ func Marshal(v interface{}) ([]byte, error) {
 
 ### Do not escape arguments of `Marshal`
 
-`json.Marshal` and `json.Unmarshal` receive `interface{}` value and they perform type determination dynamically to process.
-In normal case, you need to use the `reflect` library to determine the type dynamically, but since `reflect.Type` is defined as `interface`, when you call the method of `reflect.Type`, The reflect's argument is escaped.
+`json.Marshal` and `json.Unmarshal` receive `interface{}` value and they perform type determination dynamically to process. In normal case, you need to use the `reflect` library to determine the type dynamically, but since `reflect.Type` is defined as `interface`, when you call the method of `reflect.Type`, The reflect's argument is escaped.
 
-Therefore, the arguments for `Marshal` and `Unmarshal` are always escape to the heap.
-However, `go-json` can use the feature of `reflect.Type` while avoiding escaping.
+Therefore, the arguments for `Marshal` and `Unmarshal` are always escape to the heap. However, `go-json` can use the feature of `reflect.Type` while avoiding escaping.
 
-`reflect.Type` is defined as `interface`, but in reality `reflect.Type` is implemented only by the structure `rtype` defined in the `reflect` package.
-For this reason, to date `reflect.Type` is the same as `*reflect.rtype`.
+`reflect.Type` is defined as `interface`, but in reality `reflect.Type` is implemented only by the structure `rtype` defined in the `reflect` package. For this reason, to date `reflect.Type` is the same as `*reflect.rtype`.
 
 Therefore, by directly handling `*reflect.rtype`, which is an implementation of `reflect.Type`, it is possible to avoid escaping because it changes from `interface` to using `struct`.
 
-The technique for working with `*reflect.rtype` directly from `go-json` is implemented at [rtype.go](https://github.com/goccy/go-json/blob/master/internal/runtime/rtype.go)
+The technique for working with `*reflect.rtype` directly from `go-json` is implemented at [rtype.go](https://github.com/night-codes/go-json/blob/master/internal/runtime/rtype.go)
 
 Also, the same technique is cut out as a library ( https://github.com/goccy/go-reflect )
 
-Initially this feature was the default behavior of `go-json`.
-But after careful testing, I found that I passed a large value to `json.Marshal()` and if the argument could not be assigned to the stack, it could not be properly escaped to the heap (a bug in the Go compiler).
+Initially this feature was the default behavior of `go-json`. But after careful testing, I found that I passed a large value to `json.Marshal()` and if the argument could not be assigned to the stack, it could not be properly escaped to the heap (a bug in the Go compiler).
 
 Therefore, this feature will be provided as an **optional** until this issue is resolved.
 
@@ -211,8 +196,7 @@ In other libraries, this dedicated process is processed by making it an function
 
 Therefore, `go-json` adopted the Instruction-based execution processing system, which is also used to implement virtual machines for programming language.
 
-If it is the first type to encode, create the opcode ( instruction ) sequence required for encoding.
-From the second time onward, use `typeptr` to get the cached pre-built opcode sequence and encode it based on it. An example of the opcode sequence is shown below.
+If it is the first type to encode, create the opcode ( instruction ) sequence required for encoding. From the second time onward, use `typeptr` to get the cached pre-built opcode sequence and encode it based on it. An example of the opcode sequence is shown below.
 
 ```go
 json.Marshal(struct{
@@ -233,8 +217,7 @@ When encoding a structure like the one above, create a sequence of opcodes like 
 
 ※ When processing each operation, write the letters on the right.
 
-In addition, each opcode is managed by the following structure ( 
-Pseudo code ).
+In addition, each opcode is managed by the following structure ( Pseudo code ).
 
 ```go
 type opType int
@@ -285,8 +268,7 @@ In this way, the huge `switch-case` is used to encode by manipulating the linked
 
 ### Opcode sequence optimization
 
-One of the advantages of encoding using the opcode sequence is the ease of optimization.
-The opcode sequence mentioned above is actually converted into the following optimized operations and used.
+One of the advantages of encoding using the opcode sequence is the ease of optimization. The opcode sequence mentioned above is actually converted into the following optimized operations and used.
 
 ```
 - opStructFieldHeadInt ( `{"x": 1,` )
@@ -294,9 +276,7 @@ The opcode sequence mentioned above is actually converted into the following opt
 - opEnd
 ```
 
-It has been reduced from 5 opcodes to 3 opcodes !
-Reducing the number of opcodees means reducing the number of branches with `switch-case`.
-In other words, the closer the number of operations is to 1, the faster the processing can be performed.
+It has been reduced from 5 opcodes to 3 opcodes ! Reducing the number of opcodees means reducing the number of branches with `switch-case`. In other words, the closer the number of operations is to 1, the faster the processing can be performed.
 
 In `go-json`, optimization to reduce the number of opcodes itself like the above and it speeds up by preparing opcodes with optimized paths.
 
@@ -325,7 +305,7 @@ b, err := json.Marshal(&T{
 fmt.Println(string(b)) // {"X":1,"U":{"T":{"X":2,"U":null}}}
 ```
 
-In `go-json`, recursive processing is processed by the operation type of ` opStructFieldRecursive`.
+In `go-json`, recursive processing is processed by the operation type of `opStructFieldRecursive`.
 
 In this operation, after acquiring the opcode sequence used for recursive processing, the function is **not** called recursively as it is, but the necessary values ​​are saved by itself and implemented by moving to the next operation.
 
@@ -335,8 +315,7 @@ For more details, please refer to [the article](https://engineering.mercari.com/
 
 ### Dispatch by typeptr from map to slice
 
-When retrieving the data cached from the type information by `typeptr`, we usually use map.
-Map requires exclusive control, so use `sync.Map` for a naive implementation.
+When retrieving the data cached from the type information by `typeptr`, we usually use map. Map requires exclusive control, so use `sync.Map` for a naive implementation.
 
 However, this is slow, so it's a good idea to use the `atomic` package for exclusive control as implemented by `segmentio/encoding/json` ( https://github.com/segmentio/encoding/blob/master/json/codec.go#L41-L55 ).
 
@@ -344,8 +323,7 @@ This implementation slows down the set instead of speeding up the get, but it wo
 
 However, as a result of profiling, I noticed that `runtime.mapaccess2` accounts for a significant percentage of the execution time. So I thought if I could change the lookup from map to slice.
 
-There is an API named `typelinks` defined in the `runtime` package that the `reflect` package uses internally.
-This allows you to get all the type information defined in the binary at runtime.
+There is an API named `typelinks` defined in the `runtime` package that the `reflect` package uses internally. This allows you to get all the type information defined in the binary at runtime.
 
 The fact that all type information can be acquired means that by constructing slices in advance with the acquired total number of type information, it is possible to look up with the value of `typeptr` without worrying about out-of-range access.
 
@@ -353,7 +331,7 @@ However, if there is too much type information, it will use a lot of memory, so 
 
 If this approach is not available, it will fall back to the `atomic` based process described above.
 
-If you want to know more, please refer to the implementation [here](https://github.com/goccy/go-json/blob/master/internal/runtime/type.go#L36-L100)
+If you want to know more, please refer to the implementation [here](https://github.com/night-codes/go-json/blob/master/internal/runtime/type.go#L36-L100)
 
 ## Decoder
 
@@ -363,11 +341,9 @@ Like the encoder, the decoder also uses typeptr to call the dedicated process.
 
 ### Faster termination character inspection using NUL character
 
-In order to decode, you have to traverse the input buffer character by position.
-At that time, if you check whether the buffer has reached the end, it will be very slow.
+In order to decode, you have to traverse the input buffer character by position. At that time, if you check whether the buffer has reached the end, it will be very slow.
 
-`buf` : `[]byte` type variable. holds the string passed to the decoder
-`cursor` : `int64` type variable. holds the current read position
+`buf` : `[]byte` type variable. holds the string passed to the decoder `cursor` : `int64` type variable. holds the current read position
 
 ```go
 buflen := len(buf)
@@ -441,16 +417,14 @@ if exists {
 
 To improve this process, `json-iterator/go` is optimized so that it can be branched by switch-case when the number of fields in the structure is 10 or less (switch-case is faster than map). However, there is a risk of hash collision because the value hashed by the FNV algorithm is used for conditional branching. Also, `gojay` processes this part at high speed by letting the library user yourself write `switch-case`.
 
-
 `go-json` considers and implements a new approach that is different from these. I call this **bitmap field optimization**.
 
-The range of values ​​per character can be represented by `[256]byte`. Also, if the number of fields in the structure is 8 or less, `int8` type can represent the state of each field.
-In other words, it has the following structure.
+The range of values ​​per character can be represented by `[256]byte`. Also, if the number of fields in the structure is 8 or less, `int8` type can represent the state of each field. In other words, it has the following structure.
 
-- Base ( 8bit ): `00000000`
-- Key "a": `00000001` ( assign key "a" to the first bit )
-- Key "b": `00000010` ( assign key "b" to the second bit )
-- Key "c": `00000100` ( assign key "c" to the third bit )
+-   Base ( 8bit ): `00000000`
+-   Key "a": `00000001` ( assign key "a" to the first bit )
+-   Key "b": `00000010` ( assign key "b" to the second bit )
+-   Key "c": `00000100` ( assign key "c" to the third bit )
 
 Bitmap structure is the following
 
@@ -467,8 +441,7 @@ Bitmap structure is the following
 255     | 00000000     |
 ```
 
-You can think of this as a Bitmap with a height of `256` and a width of the maximum string length in the field name.
-In other words, it can be represented by the following type .
+You can think of this as a Bitmap with a height of `256` and a width of the maximum string length in the field name. In other words, it can be represented by the following type .
 
 ```go
 [maxFieldKeyLength][256]int8
@@ -487,16 +460,16 @@ if curBit == 0 {
 }
 ```
 
-If `curBit` is not `0` until the end of the field string, then the string is
-You may have hit one of the fields.
-But the possibility is that if the decoded string is shorter than the field string, you will get a false hit.
+If `curBit` is not `0` until the end of the field string, then the string is You may have hit one of the fields. But the possibility is that if the decoded string is shorter than the field string, you will get a false hit.
 
-- input: `{"a":1}`
+-   input: `{"a":1}`
+
 ```go
 type T struct {
     X int `json:"abc"`
 }
 ```
+
 ※ Since `a` is shorter than `abc`, it can decode to the end of the field character without `curBit` being 0.
 
 Rest assured. In this case, it doesn't matter because you can tell if you hit by comparing the string length of `a` with the string length of `abc`.
@@ -517,8 +490,8 @@ I have done a lot of other optimizations. I will find time to write about them. 
 
 Regarding the story of go-json, there are the following articles in Japanese only.
 
-- https://speakerdeck.com/goccy/zui-su-falsejsonraiburariwoqiu-mete
-- https://engineering.mercari.com/blog/entry/1599563768-081104c850/
+-   https://speakerdeck.com/goccy/zui-su-falsejsonraiburariwoqiu-mete
+-   https://engineering.mercari.com/blog/entry/1599563768-081104c850/
 
 # Looking for Sponsors
 

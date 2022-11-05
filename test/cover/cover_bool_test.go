@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/goccy/go-json"
+	"github.com/night-codes/go-json"
 )
 
 type customBool bool

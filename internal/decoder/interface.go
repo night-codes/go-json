@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"unsafe"
 
-	"github.com/goccy/go-json/internal/errors"
-	"github.com/goccy/go-json/internal/runtime"
+	"github.com/night-codes/go-json/internal/errors"
+	"github.com/night-codes/go-json/internal/runtime"
 )
 
 type interfaceDecoder struct {

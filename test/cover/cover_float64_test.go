@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/goccy/go-json"
+	"github.com/night-codes/go-json"
 )
 
 func TestCoverFloat64(t *testing.T) {

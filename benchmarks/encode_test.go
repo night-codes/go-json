@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	gojay "github.com/francoispqt/gojay"
-	gojson "github.com/goccy/go-json"
 	jsoniter "github.com/json-iterator/go"
+	gojson "github.com/night-codes/go-json"
 	"github.com/pquerna/ffjson/ffjson"
 	segmentiojson "github.com/segmentio/encoding/json"
 	"github.com/wI2L/jettison"
