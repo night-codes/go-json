@@ -8,13 +8,14 @@ import (
 )
 
 type floatDecoder struct {
-	op         func(unsafe.Pointer, float64)
-	structName string
-	fieldName  string
+	stringDecoder *stringDecoder
+	op            func(unsafe.Pointer, float64)
+	structName    string
+	fieldName     string
 }
 
 func newFloatDecoder(structName, fieldName string, op func(unsafe.Pointer, float64)) *floatDecoder {
-	return &floatDecoder{op: op, structName: structName, fieldName: fieldName}
+	return &floatDecoder{op: op, structName: structName, fieldName: fieldName, stringDecoder: newStringDecoder(structName, fieldName)}
 }
 
 var (
@@ -79,6 +80,8 @@ func (d *floatDecoder) decodeStreamByte(s *Stream) ([]byte, error) {
 				return nil, err
 			}
 			return nil, nil
+		case '"':
+			return d.stringDecoder.decodeStreamByte(s)
 		case nul:
 			if s.read() {
 				continue
@@ -112,6 +115,8 @@ func (d *floatDecoder) decodeByte(buf []byte, cursor int64) ([]byte, int64, erro
 			}
 			cursor += 4
 			return nil, cursor, nil
+		case '"':
+			return d.stringDecoder.decodeByte(buf, cursor)
 		default:
 			return nil, 0, errors.ErrUnexpectedEndOfJSON("float", cursor)
 		}

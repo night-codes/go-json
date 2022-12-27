@@ -10,20 +10,22 @@ import (
 )
 
 type intDecoder struct {
-	typ        *runtime.Type
-	kind       reflect.Kind
-	op         func(unsafe.Pointer, int64)
-	structName string
-	fieldName  string
+	stringDecoder *stringDecoder
+	typ           *runtime.Type
+	kind          reflect.Kind
+	op            func(unsafe.Pointer, int64)
+	structName    string
+	fieldName     string
 }
 
 func newIntDecoder(typ *runtime.Type, structName, fieldName string, op func(unsafe.Pointer, int64)) *intDecoder {
 	return &intDecoder{
-		typ:        typ,
-		kind:       typ.Kind(),
-		op:         op,
-		structName: structName,
-		fieldName:  fieldName,
+		stringDecoder: newStringDecoder(structName, fieldName),
+		typ:           typ,
+		kind:          typ.Kind(),
+		op:            op,
+		structName:    structName,
+		fieldName:     fieldName,
 	}
 }
 
@@ -130,6 +132,8 @@ func (d *intDecoder) decodeStreamByte(s *Stream) ([]byte, error) {
 			}
 			num := s.buf[start:s.cursor]
 			return num, nil
+		case '"':
+			return d.stringDecoder.decodeStreamByte(s)
 		case 'n':
 			if err := nullBytes(s); err != nil {
 				return nil, err
@@ -172,6 +176,8 @@ func (d *intDecoder) decodeByte(buf []byte, cursor int64) ([]byte, int64, error)
 			}
 			cursor += 4
 			return nil, cursor, nil
+		case '"':
+			return d.stringDecoder.decodeByte(buf, cursor)
 		default:
 			return nil, 0, d.typeError([]byte{char(b, cursor)}, cursor)
 		}
