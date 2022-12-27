@@ -3,6 +3,7 @@ package decoder
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 	"unsafe"
 
 	"github.com/night-codes/go-json/internal/errors"
@@ -46,28 +47,6 @@ var (
 	}
 	pow10i64Len = len(pow10i64)
 )
-
-func (d *intDecoder) parseInt(b []byte) (int64, error) {
-	isNegative := false
-	if b[0] == '-' {
-		b = b[1:]
-		isNegative = true
-	}
-	maxDigit := len(b)
-	if maxDigit > pow10i64Len {
-		return 0, fmt.Errorf("invalid length of number")
-	}
-	sum := int64(0)
-	for i := 0; i < maxDigit; i++ {
-		c := int64(b[i]) - 48
-		digitValue := pow10i64[maxDigit-i-1]
-		sum += c * digitValue
-	}
-	if isNegative {
-		return -1 * sum, nil
-	}
-	return sum, nil
-}
 
 var (
 	numTable = [256]bool{
@@ -192,7 +171,8 @@ func (d *intDecoder) DecodeStream(s *Stream, depth int64, p unsafe.Pointer) erro
 	if bytes == nil {
 		return nil
 	}
-	i64, err := d.parseInt(bytes)
+	str := *(*string)(unsafe.Pointer(&bytes))
+	i64, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
 		return d.typeError(bytes, s.totalOffset())
 	}
@@ -224,8 +204,8 @@ func (d *intDecoder) Decode(ctx *RuntimeContext, cursor, depth int64, p unsafe.P
 		return c, nil
 	}
 	cursor = c
-
-	i64, err := d.parseInt(bytes)
+	str := *(*string)(unsafe.Pointer(&bytes))
+	i64, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
 		return 0, d.typeError(bytes, cursor)
 	}

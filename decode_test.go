@@ -1135,7 +1135,7 @@ var unmarshalTests = []unmarshalTest{
 		in:  `{"V": {"F2": "hello"}}`, // 125
 		ptr: new(VOuter),
 		err: &json.UnmarshalTypeError{
-			Value:  `number "`,
+			Value:  `number hello`,
 			Struct: "V",
 			Field:  "F2",
 			Type:   reflect.TypeOf(int32(0)),
@@ -1146,7 +1146,7 @@ var unmarshalTests = []unmarshalTest{
 		in:  `{"V": {"F4": {}, "F2": "hello"}}`, // 126
 		ptr: new(VOuter),
 		err: &json.UnmarshalTypeError{
-			Value:  `number "`,
+			Value:  `number hello`,
 			Struct: "V",
 			Field:  "F2",
 			Type:   reflect.TypeOf(int32(0)),
@@ -1247,7 +1247,7 @@ var unmarshalTests = []unmarshalTest{
 		in:  `{"PP": {"T": {"Y": "bad-type"}}}`, // 141
 		ptr: new(P),
 		err: &json.UnmarshalTypeError{
-			Value:  `number "`,
+			Value:  `number bad-type`,
 			Struct: "T",
 			Field:  "Y",
 			Type:   reflect.TypeOf(int(0)),
@@ -1258,7 +1258,7 @@ var unmarshalTests = []unmarshalTest{
 		in:  `{"Ts": [{"Y": 1}, {"Y": 2}, {"Y": "bad-type"}]}`, // 142
 		ptr: new(PP),
 		err: &json.UnmarshalTypeError{
-			Value:  `number "`,
+			Value:  `number bad-type`,
 			Struct: "T",
 			Field:  "Y",
 			Type:   reflect.TypeOf(int(0)),
