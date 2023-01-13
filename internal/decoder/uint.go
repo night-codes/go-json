@@ -126,7 +126,7 @@ func (d *uintDecoder) DecodeStream(s *Stream, depth int64, p unsafe.Pointer) err
 	if err != nil {
 		return err
 	}
-	if bytes == nil {
+	if len(bytes) == 0 {
 		return nil
 	}
 	str := *(*string)(unsafe.Pointer(&bytes))
@@ -157,7 +157,7 @@ func (d *uintDecoder) Decode(ctx *RuntimeContext, cursor, depth int64, p unsafe.
 	if err != nil {
 		return 0, err
 	}
-	if bytes == nil {
+	if len(bytes) == 0 {
 		return c, nil
 	}
 	cursor = c

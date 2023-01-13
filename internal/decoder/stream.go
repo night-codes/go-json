@@ -138,6 +138,9 @@ func (s *Stream) Token() (interface{}, error) {
 			s.cursor++
 		case '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9':
 			bytes := floatBytes(s)
+			if len(bytes) == 0 {
+				bytes = []byte("0")
+			}
 			str := *(*string)(unsafe.Pointer(&bytes))
 			if s.UseNumber {
 				return json.Number(str), nil
